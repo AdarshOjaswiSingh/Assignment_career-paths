@@ -2,8 +2,8 @@ streamlit
 openai
 python-dotenv
 langchain
+sentence-transformers
 scikit-learn
 pandas
 tqdm
 numpy
-sentence-transformers
