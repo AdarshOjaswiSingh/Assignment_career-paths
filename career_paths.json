@@ -1,0 +1,17 @@
+[
+  {
+    "category": "STEM",
+    "careers": ["AI Engineer", "Data Scientist", "Robotics Engineer"],
+    "description": "Careers involving technology, engineering, and scientific problem-solving."
+  },
+  {
+    "category": "Arts",
+    "careers": ["Writer", "Designer", "Filmmaker"],
+    "description": "Creative fields involving expression, design, and storytelling."
+  },
+  {
+    "category": "Business",
+    "careers": ["Product Manager", "Entrepreneur", "Consultant"],
+    "description": "Roles involving strategy, markets, and leadership."
+  }
+]
