@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import json
 
 from langchain.prompts import PromptTemplate
-from langchain_community.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 
 from utils import load_career_paths, embed_text, extract_user_profile, match_career
@@ -27,13 +27,13 @@ st.write("Paste a conversation or describe your interests to get a career sugges
 # Load predefined career paths
 career_data = load_career_paths()
 
+st.write("✅ App loaded before LLM.")
 # Set up OpenAI LLM (✅ pass the key)
-llm = OpenAI(
-    temperature=0.5,
-    model_name="gpt-3.5-turbo-instruct",
-    openai_api_key=openai_key
+llm = ChatOpenAI(
+    openai_api_key=openai.api_key,
+    model_name="gpt-3.5-turbo",  # ✅ Valid chat model
+    temperature=0.5
 )
-
 # Prompt to extract user traits
 extract_prompt = PromptTemplate.from_template(
     """
