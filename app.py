@@ -12,7 +12,7 @@ from utils import load_career_paths, embed_text, extract_user_profile, match_car
 
 # Load API Key from .env
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key =.getenv("OPENAI_API_KEY")
 openai_key = os.getenv("OPENAI_API_KEY")
 
 if not openai_key:
