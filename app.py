@@ -30,10 +30,11 @@ career_data = load_career_paths()
 st.write("✅ App loaded before LLM.")
 # Set up OpenAI LLM (✅ pass the key)
 llm = ChatOpenAI(
-    openai_api_key=openai.api_key,
-    model_name="gpt-3.5-turbo",  # ✅ Valid chat model
+    openai_api_key=os.getenv("OPENAI_API_KEY"),
+    model_name="gpt-3.5-turbo",
     temperature=0.5
 )
+
 # Prompt to extract user traits
 extract_prompt = PromptTemplate.from_template(
     """
