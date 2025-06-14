@@ -4,7 +4,7 @@ import openai
 from dotenv import load_dotenv
 
 from langchain.prompts import PromptTemplate
-from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI  # ✅ Updated import
 from langchain.chains import LLMChain
 
 from utils import load_career_paths, embed_text, extract_user_profile, match_career
