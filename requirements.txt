@@ -2,6 +2,7 @@ streamlit
 openai
 python-dotenv
 langchain
+langchain-community
 sentence-transformers
 scikit-learn
 pandas
