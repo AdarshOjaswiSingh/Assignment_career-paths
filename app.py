@@ -2,16 +2,22 @@ import streamlit as st
 import os
 import openai
 from dotenv import load_dotenv
+import json
 
 from langchain.prompts import PromptTemplate
-from langchain_community.llms import OpenAI  # ✅ Updated import
+from langchain_community.llms import OpenAI
 from langchain.chains import LLMChain
 
 from utils import load_career_paths, embed_text, extract_user_profile, match_career
 
-# Load API Key from .env or environment variable
+# Load API Key from .env
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
+openai_key = os.getenv("OPENAI_API_KEY")
+
+if not openai_key:
+    st.error("OPENAI_API_KEY not found. Please add it to your .env file or environment.")
+    st.stop()
 
 # Set up Streamlit app
 st.set_page_config(page_title="Career Path Recommender", layout="centered")
@@ -21,8 +27,12 @@ st.write("Paste a conversation or describe your interests to get a career sugges
 # Load predefined career paths
 career_data = load_career_paths()
 
-# Set up OpenAI LLM
-llm = OpenAI(temperature=0.5, model_name="gpt-3.5-turbo-instruct")
+# Set up OpenAI LLM (✅ pass the key)
+llm = OpenAI(
+    temperature=0.5,
+    model_name="gpt-3.5-turbo-instruct",
+    openai_api_key=openai_key
+)
 
 # Prompt to extract user traits
 extract_prompt = PromptTemplate.from_template(
@@ -66,7 +76,6 @@ if st.button("Generate Career Path"):
             # Step 1: Extract traits
             result_json = extract_chain.run(conversation=conversation)
             try:
-                import json
                 user_data = json.loads(result_json)
             except Exception as e:
                 st.error("⚠️ Could not parse model response. Try rephrasing your input.")
